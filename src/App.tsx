@@ -8,8 +8,10 @@ function App() {
   };
 
   return (
-    <div>
+    <div style={{ margin: '20px' }}>
       <h1>Marvel Characters AutoSuggest</h1>
+
+      <p>Search for your favorite Marvel character</p>
 
       <AutoSuggestComponent onSelectCharacter={handleSelectCharacter} />
     </div>

@@ -18,8 +18,6 @@ const AutoSuggestComponent: React.FC<AutoSuggestComponentProps> = ({ onSelectCha
         if (value.length >= 2) {
             const results = await fetchCharacters(value, getTimestamp());
 
-            console.log('results', results)
-
             setCharacters(results);
         }
     };
@@ -34,24 +32,45 @@ const AutoSuggestComponent: React.FC<AutoSuggestComponentProps> = ({ onSelectCha
         onSelectCharacter(character);
     };
 
-    return (
-        <div>
-            <input
-                type="text"
-                placeholder="Type first 2 letters of a Marvel character"
-                value={searchTerm}
-                onChange={handleChange}
-            />
+    const handleSearch = () => { }
 
+    return (
+        <div style={{ display: 'inline-block' }}>
+            <div style={{ marginBottom: '10px' }}>
+
+                <input
+                    type="text"
+                    placeholder="Type the first 2 letters of a Marvel character"
+                    value={searchTerm}
+                    onChange={handleChange}
+                    style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '5px', width: '300px' }}
+                />
+
+                <button onClick={handleSearch} style={{ marginLeft: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}>
+                    Search
+                </button>
+            </div>
             {characters.length > 0 && (
-                <div className="dropdown">
+                <div
+                    style={{
+                        width: '100%',
+                        border: '1px solid #ccc',
+                        borderRadius: '5px',
+                        background: '#fff',
+                        marginTop: '5px',
+                    }}
+                >
                     {characters.map((character, index) => (
-                        <React.Fragment key={character.id}>
-                            {index > 0 && <div className="divider" />}
-                            <div className="dropdown-item" onClick={() => handleSelectCharacter(character)}>
-                                {character.name}
-                            </div>
-                        </React.Fragment>
+                        <div
+                            key={character.id}
+                            onClick={() => handleSelectCharacter(character)}
+                            style={{
+                                padding: '10px',
+                                borderBottom: index === characters.length - 1 ? 'none' : '1px solid #ccc',
+                            }}
+                        >
+                            {character.name}
+                        </div>
                     ))}
                 </div>
             )}
