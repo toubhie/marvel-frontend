@@ -9,18 +9,9 @@ const fetchCharacters = async (nameStartsWith: string, timestamp: number): Promi
 
         const hash = generateHash(timestamp, privateKey, publicKey);
 
-        console.log('hash', hash)
-
-        console.log('timestamp', timestamp)
-
         const apiUrl = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${nameStartsWith}&apikey=${publicKey}&ts=${timestamp}&hash=${hash}`;
 
-        console.log('apiUrl', apiUrl)
-
         const response = await axios.get(apiUrl);
-
-        console.log('response', response)
-
 
         const results: Character[] = response.data.data.results;
 
