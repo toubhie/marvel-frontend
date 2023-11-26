@@ -1,6 +1,6 @@
 
 
-# Marvel Characters - ThisThat Assessment (Frontend)
+# Marvel Characters (Frontend)
  
 ## Features
 
